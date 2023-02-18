@@ -14,8 +14,17 @@ public interface CidadeRepository extends JpaRepository<Cidade, Long> {
     List<Cidade> findByCidadeStartingWith(String cidade);
     List<Cidade> findByCidadeEndingWith(String cidade);
     List<Cidade> findByCidadeContaining(String cidade);
-    List<Cidade> findByHabitantes(Long value);
 
     @Query(" select c from Cidade c where upper(c.cidade) like upper(?1) ")
     List<Cidade> findByCidadeLike(String cidade);
+
+    List<Cidade> findByHabitantes(Long value);
+    List<Cidade> findByHabitantesLessThan(Long value);
+    List<Cidade> findByHabitantesGreaterThan(Long value);
+
+    List<Cidade> findByHabitantesLessThanEqual(Long value);
+    List<Cidade> findByHabitantesGreaterThanEqual(Long value);
+
+    List<Cidade> findByHabitantesLessThanAndCidadeLike(Long value, String cidade);
+
 }

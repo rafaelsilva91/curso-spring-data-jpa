@@ -17,4 +17,4 @@ values
     ('Palmas', 78787900),
     ('Recife', 23234788),
     ('Natal', 78978979),
-    ('Brasilia', 12123132);
+    ('Brasilia', 1000000);

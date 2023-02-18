@@ -39,6 +39,18 @@ public class CidadeController {
         return cidades;
     }
 
+    @GetMapping("/filtro/{filtro}")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Cidade> findByFilter(@PathVariable String filtro){
+        List<Cidade> cidades = service.findByCidades(filtro);
+
+        System.out.println("BEGIN");
+        service.imprimirNoConsole(filtro);
+        System.out.println("END");
+
+        return cidades;
+    }
+
     @GetMapping("/filtro/habitantes/{habitantes}")
     @ResponseStatus(HttpStatus.OK)
     public List<Cidade> findByHabitantes(@PathVariable Long habitantes){
@@ -47,13 +59,14 @@ public class CidadeController {
         return cidades;
     }
 
-    @GetMapping("/filtro/{filtro}")
+
+    @GetMapping("/filtro/habitantes/filter/{value}")
     @ResponseStatus(HttpStatus.OK)
-    public List<Cidade> findByFilter(@PathVariable String filtro){
-        List<Cidade> cidades = service.findByCidades(filtro);
+    public List<Cidade> findByHabitantesFilters(@PathVariable Long value){
+        List<Cidade> cidades = service.findByHabitantes(value);
 
         System.out.println("BEGIN");
-        service.imprimirNoConsole(filtro);
+        service.imprimirNoConsoleHabitantes(value);
         System.out.println("END");
 
         return cidades;

@@ -59,6 +59,37 @@ public class CidadeService {
         System.out.println("Like");
         cidadeRepository.findByCidadeLike("%"+filtro+"%").forEach(System.out::println);
         System.out.println();
+
+    }
+
+    public void imprimirNoConsoleHabitantes(Long value){
+        System.out.println();
+        System.out.println("ByHabitantes");
+        cidadeRepository.findByHabitantes(value).forEach(System.out::println);
+        System.out.println();
+
+        System.out.println("LessThan < ");
+        cidadeRepository.findByHabitantesLessThan(value).forEach(System.out::println);
+        System.out.println();
+
+        System.out.println("GreaterThan > ");
+        cidadeRepository.findByHabitantesGreaterThan(value).forEach(System.out::println);
+        System.out.println();
+
+        System.out.println("LessThanEqual <= ");
+        cidadeRepository.findByHabitantesLessThanEqual(value).forEach(System.out::println);
+        System.out.println();
+
+        System.out.println("GreaterThan >= ");
+        cidadeRepository.findByHabitantesGreaterThanEqual(value).forEach(System.out::println);
+        System.out.println();
+
+
+        System.out.println("LessThanAndCidadeLike >= ");
+        cidadeRepository.findByHabitantesLessThanAndCidadeLike(value, "Br%").forEach(System.out::println);
+        System.out.println();
+
+
     }
 
 
