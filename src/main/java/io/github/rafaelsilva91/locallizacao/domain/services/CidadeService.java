@@ -43,14 +43,21 @@ public class CidadeService {
 
     public void imprimirNoConsole(String filtro){
         System.out.println();
+
         System.out.println("StratingWith");
         cidadeRepository.findByCidadeStartingWith(filtro).forEach(System.out::println);
         System.out.println();
+
         System.out.println("EndingWith");
         cidadeRepository.findByCidadeEndingWith(filtro).forEach(System.out::println);
         System.out.println();
+
         System.out.println("Containing");
         cidadeRepository.findByCidadeContaining(filtro).forEach(System.out::println);
+        System.out.println();
+
+        System.out.println("Like");
+        cidadeRepository.findByCidadeLike("%"+filtro+"%").forEach(System.out::println);
         System.out.println();
     }
 
