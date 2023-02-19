@@ -1,9 +1,9 @@
 package io.github.rafaelsilva91.locallizacao.controllers;
 
 import io.github.rafaelsilva91.locallizacao.domain.entities.Cidade;
-import io.github.rafaelsilva91.locallizacao.domain.repositories.CidadeRepository;
-import io.github.rafaelsilva91.locallizacao.domain.services.CidadeService;
+import io.github.rafaelsilva91.locallizacao.services.CidadeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -51,6 +51,19 @@ public class CidadeController {
         return cidades;
     }
 
+    @GetMapping("/page/{filtro}")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Cidade> findByFilterPage(@PathVariable String filtro){
+        List<Cidade> cidades = service.findByCidadesPage(filtro);
+
+        System.out.println("BEGIN");
+        service.imprimirNoConsole(filtro);
+        System.out.println("END");
+
+        return cidades;
+    }
+
+
     @GetMapping("/filtro/habitantes/{habitantes}")
     @ResponseStatus(HttpStatus.OK)
     public List<Cidade> findByHabitantes(@PathVariable Long habitantes){
@@ -71,5 +84,14 @@ public class CidadeController {
 
         return cidades;
     }
+
+    @GetMapping("/dinamico")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Cidade> findByFilterdinamico(@RequestBody Cidade request){
+        List<Cidade> cidades = service.filtroDinamico(request);
+
+        return cidades;
+    }
+
 
 }
